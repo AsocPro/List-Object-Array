@@ -52,10 +52,8 @@ public class ListTest {
     @Test
     public void testTraverse() {
         System.out.println("traverse");
-        List instance = new List();
-        instance.traverse();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        stdList.traverse();
+        fail("check this one manually");
     }
 
     /**
@@ -64,7 +62,15 @@ public class ListTest {
     @Test
     public void testResize() {
         System.out.println("resize");
-        
+        List<Integer> newList = new List<>(10);
+        for(int index = 0; index < 5; index++)
+        {
+            newList.insert(index,stdArray[index]);
+        }
+        for(int index = 5; index < 10; index++)
+        {
+            newList.insert(index, null);
+        }
     }
 
     /**
@@ -73,12 +79,14 @@ public class ListTest {
     @Test
     public void testReplace() {
         System.out.println("replace");
-        List instance = new List();
-        Object expResult = null;
-        Object result = instance.replace();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        List<Integer> newList = new List<>(5);
+        for(int index = 0; index < 5; index++)
+        {
+            newList.insert(index,stdArray[index]);
+        }
+        newList.replace(2,333);
+        newList.traverse();
+        fail("check this one manually");
     }
 
     /**
@@ -105,5 +113,47 @@ public class ListTest {
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getLength method, of class List.
+     */
+    @Test
+    public void testGetLength() {
+        System.out.println("getLength");
+        assertTrue(stdList.getLength()==5);
+    }
+    /**
+     * Test of getItem method, of class List.
+     */
+    @Test
+    public void testGetItem() {
+        System.out.println("getItem");
+        assertTrue(stdList.getItem(0) == 1);
+    }
+
+    /**
+     * Test of equals method, of class List.
+     */
+    @Test
+    public void testEquals() {
+        System.out.println("equals");
+        List<Integer> newList = new List<>(5);
+        for(int index = 0; index < 5; index++)
+        {
+            newList.insert(index,stdArray[index]);
+        }
+        assertTrue(newList.equals(stdList)&&stdList.equals(newList));
+    }
+    @Test
+    public void testEqualsFail() {
+        System.out.println("equals");
+        List<Integer> newList = new List<>(5);
+        for(int index = 0; index < 4; index++)
+        {
+            newList.insert(index,stdArray[index]);
+        }
+        newList.insert(4,4);
+        assertTrue(!(newList.equals(stdList)&&stdList.equals(newList)));
     }
 }
