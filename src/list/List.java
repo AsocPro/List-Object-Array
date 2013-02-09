@@ -4,6 +4,8 @@
  */
 package list;
 
+import java.lang.reflect.Array;
+
 /**
  *
  * @author zachary
@@ -16,8 +18,10 @@ public class List <T>{
     //Object[] array;
     T[] array;
     final int DEFAULT_SIZE = 10;
-    public List()
+    int length;
+    public List(Class<T> c)
     {
+        array = (T[]) Array.newInstance(c,DEFAULT_SIZE);
        // array = new object
                 //traverse method walk through the method and printout all of it
     }
@@ -37,10 +41,14 @@ public class List <T>{
      */
     public void traverse()
     {
-        
+        for(int index = 0; index < length; index++)
+        {
+            System.out.println(array[index].toString());
+        }
     }
     /**
      * Changes the size of the List.
+     * @return the new size of the List
      */
     public int resize()
     {
@@ -50,7 +58,7 @@ public class List <T>{
      * Replaces an object in the list.
      * @return The object that was replaced.
      */
-    public T replace()
+    public T replace(int index, T element)
     {
         return null;
     }
@@ -67,5 +75,47 @@ public class List <T>{
     public T delete()
     {
         return null;
+    }
+    public int getLength()
+    {
+        return length;
+    }
+    public T getItem(int index)
+    {
+        T item = array[index];
+        return item;
+    }
+    @Override
+    public boolean equals(Object object)
+    {
+        if(object == null)
+        {
+            return false;
+        }
+        if(this == object)
+        {
+            return true;
+        }
+        if(!(object instanceof List))
+        {
+            return false;
+        }
+        List second = (List)object;
+        if(second.getLength() != this.getLength())
+        {
+            return false;
+        }
+        for(int index = 0; index < this.getLength(); index++)
+        {
+            if(second.getItem(index) == null && this.getItem(index) == null)
+            {
+                
+            }
+            if(second.getItem(index).equals(this.getItem(index)))
+            {
+                return false;
+            }
+        }
+        return true;
     }
 }
