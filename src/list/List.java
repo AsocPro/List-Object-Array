@@ -50,9 +50,22 @@ public class List <T>{
      * Changes the size of the List.
      * @return the new size of the List
      */
-    public int resize()
+    public void resize(int newSize)
     {
-        return 4;
+		if(newSize < length)
+		{
+			throw new exception!
+		}
+		T[] newArray = (T[]) Array.newInstance(Class<T>, newSize);
+		for(int index =0; index < length; index++)
+		{
+		    newArray[index] = array[index];
+		}
+		for(int index = length; index < newSize; index++)
+		{
+			newArray[index] = null;
+		}
+		array = newArray;
     }
     /**
      * Replaces an object in the list.
@@ -60,7 +73,13 @@ public class List <T>{
      */
     public T replace(int index, T element)
     {
-        return null;
+		if(index < 0 || index >= length)
+		{
+			throw new exception!
+		}
+		T oldElement = array[index];
+		array[index] = element;
+        return oldElement;
     }
     /**
      * Inserts an object
@@ -111,7 +130,11 @@ public class List <T>{
             {
                 
             }
-            if(second.getItem(index).equals(this.getItem(index)))
+            else if(second.getItem(index) == null XOR this.getItem(index)
+			{
+				return false;
+			}
+			else if(second.getItem(index).equals(this.getItem(index)))
             {
                 return false;
             }
