@@ -13,7 +13,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author zachary
+ * @author zachary pratt gibbs
  */
 public class ListTest {
     
